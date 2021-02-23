@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./buefy.min.css">
+    <title>Portal Nauta</title>
+  
+</head>
+<body>    
+    <!--<form class="form" action="https://secure.etecsa.net:8443//LoginServlet" method="post" id="formulario">
+        <input type="hidden" name="wlanuserip" id="wlanuserip" value="10.199.42.197"/>
+        <input type="hidden" name="wlanacname" id="wlanacname" value=""/>
+        <input type="hidden" name="wlanmac" id="wlanmac" value="" />
+        <input type="hidden" name="firsturl" id="firsturl" value="notFound.jsp" />
+        <input type="hidden" name="ssid" id="ssid" value="wifi_etecsa" />			
+        <input type="hidden" name="usertype" id="usertype" value="" />
+        <input type="hidden" name="gotopage" id="gotopage" value="/nauta_etecsa/LoginURL/pc_login.jsp" />
+        <input type="hidden" name="successpage" id="successpage" value="/nauta_etecsa/OnlineURL/pc_index.jsp" />
+        <input type="hidden" name="loggerId" id="loggerId" value="20210204173126551" />
+        <input type="hidden" name="lang" id="lang" value="es_ES" />
+        <input name="username" id="username" maxlength="253"  type="text">
+        <input name="password" id="password"  value="" type="password" autocomplete="off">
+        <input class="btn" name="Enviar" value='Aceptar' type="button" >
+        <input class="btn" name="cancel" value='Cancelar' type="reset">
+        <input class="btn" name="ayuda" value='Ayuda'type="button">
+        <input type='hidden' name='CSRFHW' value='8075c86e1de448d745463d02616b4b55' />
+        </form>
+        <button  onclick=conectar()>dert</button>
+   -->
+   <div id="app">
+       <div class="box">
+       <b-field
+       label="name"></b-field>
+          <b-input
+          type="email"
+          placeholder="User"
+          v-model="Component.username"></b-input>
+       </b-field>
+       <b-field
+       label="password"></b-field>
+          <b-input
+          type="password"
+          placeholder="Password"
+          v-model="Component.password"></b-input>
+       </b-field>
+       <button type="is-primary"
+       @click="Send()">Send</button>
+    </div>
+   </div>
+   <script src="axios.min.js"></script>
+   <script src="vue.min.js"></script>
+   <script src="buefy.min.js"></script>
+    <script>
+       new Vue({
+           el: '#app',
+           data(){
+               return{
+                    Component:{
+                    wlanuserip:"10.199.42.119",
+                    wlanacname:"",
+                    wlanmac:"",
+                    firsturl:"notFound.jsp",
+                    ssid:"wifi_etecsa",
+                    usertype:"",
+                    gotopage:"/nauta_etecsa/LoginURL/pc_login.jsp", 
+                    successpage:"/nauta_etecsa/OnlineURL/pc_index.jsp",
+                    loggerId:"20210215203304849",
+                    lang:"es_ES" ,
+                    username:"",
+                    password:"",
+                    CSRFHW:"aac3ce0eddf07a9c2c0dd61f735a0f15",
+
+                    },  
+                    Component1:{
+                        wlanuserip:"10.199.42.76",
+                        wlanacname:"",
+                        ssid:"wifi_etecsa",
+                        portalurl:"https://secure.etecsa.net:8443",
+                        wlanparameter:"50fd7af24b5b277485e0eb6e11abc009ecad94807b8322ef"
+                    },             
+                   head:{
+                       headers:{
+                        "Content-Type":"application/x-www-form-urlencoded",
+                        Accept:"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+                       }
+                    }
+               }
+           },
+           methods:{
+            
+            Send: function (){
+             axios
+            .post('https://secure.etecsa.net:8443//LoginServlet',this.Component)
+            .then(response => {console.log(response.request.responseText)})
+            .catch(err=>{console.log("Error:"+err)});
+           }
+        }
+       })
+   </script>
+</body>
+</html>
