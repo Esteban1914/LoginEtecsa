@@ -8,9 +8,8 @@ app.on('ready',()=>{
         pathname:path.join(__dirname,'view/index.html'),
         protocol:'file',
         slashes:true
-
-   }));
-   
-
+      }));
 })
+
+
 

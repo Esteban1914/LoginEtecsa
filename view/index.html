@@ -7,95 +7,240 @@
     <title>Portal Nauta</title>
   
 </head>
-<body>    
-    <!--<form class="form" action="https://secure.etecsa.net:8443//LoginServlet" method="post" id="formulario">
-        <input type="hidden" name="wlanuserip" id="wlanuserip" value="10.199.42.197"/>
-        <input type="hidden" name="wlanacname" id="wlanacname" value=""/>
-        <input type="hidden" name="wlanmac" id="wlanmac" value="" />
-        <input type="hidden" name="firsturl" id="firsturl" value="notFound.jsp" />
-        <input type="hidden" name="ssid" id="ssid" value="wifi_etecsa" />			
-        <input type="hidden" name="usertype" id="usertype" value="" />
-        <input type="hidden" name="gotopage" id="gotopage" value="/nauta_etecsa/LoginURL/pc_login.jsp" />
-        <input type="hidden" name="successpage" id="successpage" value="/nauta_etecsa/OnlineURL/pc_index.jsp" />
-        <input type="hidden" name="loggerId" id="loggerId" value="20210204173126551" />
-        <input type="hidden" name="lang" id="lang" value="es_ES" />
-        <input name="username" id="username" maxlength="253"  type="text">
-        <input name="password" id="password"  value="" type="password" autocomplete="off">
-        <input class="btn" name="Enviar" value='Aceptar' type="button" >
-        <input class="btn" name="cancel" value='Cancelar' type="reset">
-        <input class="btn" name="ayuda" value='Ayuda'type="button">
-        <input type='hidden' name='CSRFHW' value='8075c86e1de448d745463d02616b4b55' />
-        </form>
-        <button  onclick=conectar()>dert</button>
-   -->
+<body>     
    <div id="app">
        <div class="box">
-       <b-field
-       label="name"></b-field>
-          <b-input
-          type="email"
-          placeholder="User"
-          v-model="Component.username"></b-input>
-       </b-field>
-       <b-field
-       label="password"></b-field>
-          <b-input
-          type="password"
-          placeholder="Password"
-          v-model="Component.password"></b-input>
-       </b-field>
-       <button type="is-primary"
-       @click="Send()">Send</button>
-    </div>
-   </div>
-   <script src="axios.min.js"></script>
-   <script src="vue.min.js"></script>
-   <script src="buefy.min.js"></script>
-    <script>
-       new Vue({
-           el: '#app',
-           data(){
-               return{
-                    Component:{
-                    wlanuserip:"10.199.42.119",
+            <b-field
+                label="name"></b-field>
+                 <b-input
+                     type="email"
+                     placeholder="User"
+                     v-model="Component.username">
+                 </b-input>
+            </b-field>
+            <b-field
+                 label="password"></b-field>
+                 <b-input
+                     type="password"
+                     placeholder="Password"
+                     v-model="Component.password">
+                 </b-input>
+            </b-field>
+            <button type="is-primary"
+                 @click="Send()">
+                 Send
+            </button>
+        </div>
+     </div>
+     <script src="axios.min.js"></script>
+     <script src="vue.min.js"></script>
+     <script src="buefy.min.js"></script>
+     <script>
+         new Vue({
+            el: '#app',
+            data(){
+                return{ 
+                    ComponentRedirectAction:"",
+                    ComponentAction:"",                   
+                    ComponentRedirect:
+                    {
+                        wlanuserip:"",
+                        wlanacname:"",
+                        ssid:"",
+                        portalurl:"",
+                        wlanparameter:""
+                    },
+                    Component:
+                    {
+                    wlanuserip:"",
                     wlanacname:"",
                     wlanmac:"",
-                    firsturl:"notFound.jsp",
-                    ssid:"wifi_etecsa",
+                    firsturl:"",
+                    ssid:"",
                     usertype:"",
-                    gotopage:"/nauta_etecsa/LoginURL/pc_login.jsp", 
-                    successpage:"/nauta_etecsa/OnlineURL/pc_index.jsp",
-                    loggerId:"20210215203304849",
-                    lang:"es_ES" ,
+                    gotopage:"", 
+                    successpage:"",
+                    loggerId:"",
+                    lang:"" ,
                     username:"",
                     password:"",
-                    CSRFHW:"aac3ce0eddf07a9c2c0dd61f735a0f15",
-
+                    CSRFHW:"",
                     },  
-                    Component1:{
-                        wlanuserip:"10.199.42.76",
-                        wlanacname:"",
-                        ssid:"wifi_etecsa",
-                        portalurl:"https://secure.etecsa.net:8443",
-                        wlanparameter:"50fd7af24b5b277485e0eb6e11abc009ecad94807b8322ef"
-                    },             
-                   head:{
-                       headers:{
-                        "Content-Type":"application/x-www-form-urlencoded",
-                        Accept:"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-                       }
-                    }
                }
            },
            methods:{
-            
-            Send: function (){
-             axios
-            .post('https://secure.etecsa.net:8443//LoginServlet',this.Component)
-            .then(response => {console.log(response.request.responseText)})
-            .catch(err=>{console.log("Error:"+err)});
-           }
-        }
+                Send: function ()
+                {
+                     axios
+                     .post('http://www.msftconnecttest.com/redirect') 
+                        .then(response => {
+                            if(this.GetInfo(response.request.responseText,0))
+                            {
+                                axios
+                                .post(this.ComponentRedirectAction,this.ComponentRedirect)
+                                    .then(response=>
+                                    {
+                                        this.Component.username="esptel.dvpe@nauta.com.cu";
+                                        this.Component.password="My_Password";
+                                        if(this.GetInfo(response.request.responseText,1))
+                                        {
+                                            console.log(this.ComponentAction);
+                                            console.log(this.Component);
+                                            axios
+                                            .post(this.ComponentAction,this.Component)
+                                                .then(response=>
+                                                {
+                                                    console.log(response.request.responseText);
+                                                })
+                                                .catch(err=>
+                                                {
+                                                 console.log("Error 3:"+err);
+                                                })       
+                                        } 
+                                        else
+                                            console.log("Error 2:Formato de archivo no valido o pagina incorrecta"); 
+                                    }) 
+                                    .catch(err=>{
+                                        console.log("Error 2:"+err);
+                                    });   
+                            }
+                            else
+                                console.log("Error 1:Formato de archivo no valido o pagina incorrecta"); 
+                        })
+                        .catch(err=>
+                        {
+                            console.log("Error 1:"+err)
+                        });
+                },
+                GetinfoSub:function(textExp,SubText,comillasimples=false)
+                {    
+                    var text=textExp;
+                    var num=text.indexOf(SubText);
+                    if(num==-1)
+                        return false;
+                    num+=String(SubText).length;
+                    text=text.substr(num);
+                    var newtext=text;
+                    if(comillasimples===true)
+                        num=newtext.indexOf("\'",1);
+                    else
+                        num=newtext.indexOf("\"",1);
+
+                    newtext=newtext.substr(0,num);
+                    text=text.substr(num);
+                    if(comillasimples===true)
+                        newtext=newtext.replaceAll("\'","");
+                    else
+                        newtext=newtext.replaceAll("\"","");    
+
+                    return newtext;
+
+                },
+                GetInfo:function(text,opcion)
+                {
+                    var resp;
+                    switch (opcion) 
+                    {
+                        case 0:
+                            resp=this.GetinfoSub(text,"<form name=\"CMCCWLANFORM\" method=\"post\" action=")
+                            if(resp===false)
+                               return resp;
+                            this.ComponentRedirectAction=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"wlanuserip\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.ComponentRedirect.wlanuserip=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"wlanacname\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.ComponentRedirect.wlanacname=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"ssid\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.ComponentRedirect.ssid=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"portalurl\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.ComponentRedirect.portalurl=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"wlanparameter\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.ComponentRedirect.wlanparameter=resp;
+
+                            return true;
+                            break;          
+                        case 1:
+                            resp=this.GetinfoSub(text,"<form class=\"form\" action=")
+                            if(resp===false)
+                                return resp;
+                            this.ComponentAction=resp;
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"wlanuserip\" id=\"wlanuserip\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.wlanuserip=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"wlanacname\" id=\"wlanacname\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.wlanacname=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"wlanmac\" id=\"wlanmac\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.wlanmac=resp;
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"firsturl\" id=\"firsturl\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.firsturl=resp; 
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"ssid\" id=\"ssid\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.ssid=resp; 
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"usertype\" id=\"usertype\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.usertype=resp; 
+                            
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"gotopage\" id=\"gotopage\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.gotopage=resp; 
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"successpage\" id=\"successpage\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.successpage=resp; 
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"loggerId\" id=\"loggerId\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.loggerId=resp; 
+
+                            resp=this.GetinfoSub(text,"<input type=\"hidden\" name=\"lang\" id=\"lang\" value=")
+                            if(resp===false)
+                               return resp;
+                            this.Component.lang=resp; 
+
+                            resp=this.GetinfoSub(text,"<input type='hidden' name='CSRFHW' value=",true)
+                            if(resp===false)
+                               return resp;
+                            this.Component.CSRFHW=resp; 
+
+                            return true;
+                            break;
+                    }
+                    return false;
+                }
+
+            }
        })
    </script>
 </body>
